@@ -5,14 +5,14 @@ I begin running the SAS programs.
 NE Control_1 
 I made a copy of the original and I'm working on the file called NE Control_1 JV
 
-I change the name of the directory in the firts line to:
+I change the name of the directory in the first line to:
 G:\MAX-Filer\Research\Labs-kbuzard-S18 
 then I run the entire program one step at a time.
 Started runing at 10.40 am ended at 10.53 am. If I run the entire program it takes less than 3 minutes. 
 I added the Procedure Print the variable citations at the end of the program to see the result.
 Correctly print a table. 
 
-After running the hole program step by step, I start checking it by printing some of the variables, 
+After running the whole program step by step, I start checking it by printing some of the variables, 
 the program print the tables but it take beetwen 10-15 min per table, if it takes longer than that I cancel the printing. 
 
 The next step should be to transpone the columns so the table looks like the one in the paper we are using.
