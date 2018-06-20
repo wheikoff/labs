@@ -1,0 +1,13 @@
+Found zip code file for line 22: ZIPS.shp
+Entered ZIPS.shp into line 22
+Found labs data for line 23: Labs.shp
+Entered Labs.shp into line 23
+Entered ‘ZIP’ on Line 26 for variable name
+Entered variable names ‘X’ and ‘Y’ variable names into respective spots on line 47-48
+Set simulations to 9 on Line 39
+Put parenthesis around all ‘print’ lines to adjust for the syntax change from Python 2.7 to 3.6
+Set Python Path by going to Tools and then “PYTHONPATH manager”; adding path ‘C:\Program Files (x86)\ArcGIS\Desktop10.5’ 
+  therefore allowing spyder to import Arcpy
+Set Python Path using “PYTHONPATH manager”; adding path ‘G:\MAX-filer\Research\Labs-kbuzard-S18\kfunctions’ therefore 
+  allowing spyder to import kfunctions
+Troubleshooting error arising from "AttributeError: module 'arcpy' has no attribute 'env' " on Line 29
