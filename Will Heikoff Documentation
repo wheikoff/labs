@@ -1,13 +1,34 @@
-Found zip code file for line 22: ZIPS.shp
+Will Heikoff Documentation
+Goal: To get the python script K-function Local, G:\MAX-Filer\Research\Labs-kbuzard-S18\kfunctions\K-function Local, for California R & D Labs running for 9 iterations
+
+6/12/18
+Searched for file which exhibits the zip code with the associated Total and manufacturing employment for the zip code.
+
+6/15/18
+Found zip code file for line 22: ZIPS.shp, using trial and error methods testing different files with the name ‘zips’ within the California folder, plugging the files into the ArcMap file ‘Base’, located within the same folder, to find a file which exhibits the zip code with the associated Total and manufacturing employment for the zip code.
+	Located at G:\MAX-Filer\Research\Labs-kbuzard-S18\CARR\California\Base Data
 Entered ZIPS.shp into line 22
-Found labs data for line 23: Labs.shp
+Found labs data for line 23: Labs.shp, using trial and error methods testing different files with the name ‘zips’ within the California folder, plugging the files into the ArcMap file ‘Base’, located within the same folder, to find a file which exhibits the Labs street address and associated ‘X’ and ‘Y’ cooridinates
+	Located at G:\MAX-Filer\Research\Labs-kbuzard-S18\CARR\California\Base Data
 Entered Labs.shp into line 23
-Entered ‘ZIP’ on Line 26 for variable name
-Entered variable names ‘X’ and ‘Y’ variable names into respective spots on line 47-48
+Entered ‘ZIP’ on Line 26 for variable name, after plugging in the ‘ZIPS.zhp’ file into ArcMap and using the attribute Table to establish what the zip code variable was
+Entered variable names ‘X’ and ‘Y’ variable names into respective spots on line 47-48, after plugging the ‘Labs.shp’ file into ArcMap and using the attribute Table to establish what the Coordinate variables are
 Set simulations to 9 on Line 39
 Put parenthesis around all ‘print’ lines to adjust for the syntax change from Python 2.7 to 3.6
-Set Python Path by going to Tools and then “PYTHONPATH manager”; adding path ‘C:\Program Files (x86)\ArcGIS\Desktop10.5’ 
-  therefore allowing spyder to import Arcpy
-Set Python Path using “PYTHONPATH manager”; adding path ‘G:\MAX-filer\Research\Labs-kbuzard-S18\kfunctions’ therefore 
-  allowing spyder to import kfunctions
-Troubleshooting error arising from "AttributeError: module 'arcpy' has no attribute 'env' " on Line 29
+Set Python Path by going to Tools and then “PYTHONPATH manager”; adding path ‘C:\Program Files (x86)\ArcGIS\Desktop10.5’ therefore allowing spyder to import Arcpy
+Set Python Path using “PYTHONPATH manager”; adding path ‘G:\MAX-filer\Research\Labs-kbuzard-S18\kfunctions’ therefore allowing spyder to import kfunctions
+
+6/20/18
+Troubleshooting issue with arcpy.env; Spyder has the issue “AttributeError: module 'arcpy' has no attribute 'env' “
+
+6/21/18
+Replaced kfunction, K-function Local, and K-function Global with kfunction_scipy, K-function Local_scipy, and K-function_scipy, to help resolve the issue locating the ‘env’ attribute for arcpy
+
+6/22/18
+Entered “G:\MAX-Filer\Research\Labs-kbuzard-S18\CARR\California\Base Data\ZIPS.shp” into Line 37 to set the areal features
+Entered “G:\MAX-Filer\Research\Labs-kbuzard-S18\CARR\California\Base Data\Labs.shp” into Line 38 to set the point features
+Replaced “Population” Line 43 with “ZIP” to set the fieldname
+Entered “9” for number of simulations on Line 46
+Replaced (.1, 1, .1) with [0.5, 1, 5, 10] on Line 31 to adjust the distance vector to 0.5 miles, 1 miles, etc…
+Entered “”X”, “Y”” into pointFeatures.shapes function on line 65 to set coordinates
+Troubleshooting problem associated with "PVALS" syntax error on Line 184
