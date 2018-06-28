@@ -57,4 +57,23 @@ Replaced “G:\MAX-Filer\Research\Labs-kbuzard-S18\CARR\California\Base Data\Lab
 	by Buzard et al. which sites the use of only 645 labs rather than the 687 labs given in Labs.shp
 Continuing troubleshooting issue with PVAL syntax issue on line 191
 
+6/25/18
+Continued troubleshooting issue with PVAL syntax on line 191 with Prof. Buzard
+Found issue with importing shapefile on line 20
+Resolved issue by using Windows’ Command Prompt to install pyshp, the python shapefile library. Accomplished this by 
+	changing the current directory to the C: drive, by using the function “c:”, then using the 
+	“\Apps-SU\Anaconda3>python –m pip install pyshp” function to install the pyshp library
+		Used “\Apps-SU\Anaconda3” as this is where the pip package is located
+Created new Python Path for shapefile, using the location of where pyshp was installed and stored by the command prompt
+Changed ‘sys.path.append’ location to "G:\MAX-Filer\Research\Labs-kbuzard-S18\kfunctions" in order to create path to import
+	further modules
+
+6/28/18
+Entered "G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data\ZIPS.shp" to set areal features on line 44 to
+	adjust for movement of Labs-kbuzard-S18 folder
+Entered "G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data\GoodLabs.shp" to set point features on line 45
+	to adjust for the movement of Labs-kbuzard-S18 folder
+Tried to install shapely module using Windows Command Prompt yet error arose finding shapely and installation could not be completed
+Tried to install geopandas module using Windows Command Prompt yet error arose finding shapely and installation could not be completed
+
 
