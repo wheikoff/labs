@@ -76,4 +76,28 @@ Entered "G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data\Go
 Tried to install shapely module using Windows Command Prompt yet error arose finding shapely and installation could not be completed
 Tried to install geopandas module using Windows Command Prompt yet error arose finding shapely and installation could not be completed
 
+7/2/18 - Working on new K-function Local_3Stage file
+Received new Three Stage K-functions files from Jake Carr and Prof. Buzard and saved them to the 
+	“G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\kfunctions\Three Stage K-functions\Three Stage K-functions” folder
+Changed sys.path.append on line 23 to “G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\kfunctions\Three Stage K-functions\Three Stage
+	K-functions” to adjust for the directory where the new k-functions are located
+Changed zipcodes data on line 36 to “G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data\ZIPS.shp"
+Changed points data on line 37 to “G:\MAX-Filer\Research\Labs-kbuzard-S18\CARR\California\Base Data\GoodLabs.shp"
+Changed the reference variable on line 43 to “Emp_Manufa"
+Changed ZIPFIELD variable on line 46 to “ZIP"
+Changed number of simulations to 9 on line 59
+
+7/3/18
+Installed shapely module using the Anaconda Prompt window in Windows. Used “conda install –c conda-forge shapely” command function
+	Installed to C:\Apps-SU\Anaconda3
+Tried installing geopandas module using the Anaconda Prompt window in Windows. Used “conda install –c conda-forge geopandas” command
+	function
+		Installation failed
+Closed Python window and tried installing geopandas module again using the Anaconda Prompt window in Windows. Used “conda install –c
+	conda-forge geopandas” command function
+		Successful Installion; Installed to C:\Apps-SU\Anaconda3
+Issue re-opening Spyder; error stating that “Python has stopped working”; most likely due to the installation of “geopandas” which
+	downgraded/uninstalled several package
+		
+
 
