@@ -99,6 +99,8 @@ Closed Python window and tried installing geopandas module again using the Anaco
 		Successful Installion; Installed to C:\Apps-SU\Anaconda3
 Issue re-opening Spyder; error stating that “Python has stopped working”; most likely due to the installation of “geopandas” which
 	downgraded/uninstalled several package
+Tried reinstalling python in the Windows’ Anaconda Prompt window using the “conda install –c conda-forge python” function
+	Successful installation, yet still cannot open Spyder program
 Troubleshooting methods to reopen spyder
 		
 
