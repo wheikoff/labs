@@ -102,6 +102,19 @@ Issue re-opening Spyder; error stating that “Python has stopped working”; mo
 Tried reinstalling python in the Windows’ Anaconda Prompt window using the “conda install –c conda-forge python” function
 	Successful installation, yet still cannot open Spyder program
 Troubleshooting methods to reopen spyder
+
+7/5/2018
+Due to Spyder unable to able to open was unable to make necessary changes to Code relating to the movement of the 3-stage program 
+	folder by kbuzard to the kfunctions folder
+Troubleshooting to find the block level data set for the 3-stage programs by importing different data sets into the ArcMap file ‘Base’
+	found in the Base Data Folder (G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data) and searching for data set 
+	attributes which exhibit defined blocks in the data
+Began searching in the Materials for Block Level Analysis folder (G:\MAX-Filer\Collab\Labs
+	kbuzard-S18\Admin\Materials for Block Level Analysis); not successful
+Continuing search in the Base Data Folder (G:\MAX-Filer\Collab\Labs-kbuzard-
+	S18\Admin\CARR\California\Base Data)
+
+
 		
 
 
