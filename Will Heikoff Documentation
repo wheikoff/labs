@@ -129,9 +129,17 @@ Replaced “POINT_X” and “POINT_Y” with “X” and “Y” respectively, 
 Replaced “POINT_X” and “POINT_Y” with “X” and “Y” respectively, on line 80 to adjust for Coordinate variables with in GoodLabs.shp 
 	data set
 Changed points data on line 37 to “G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data\GoodLabs.shp"
-Created python environment using “conda create –n labs python=3.6 spyder pyshp scipy cython geopandas” in Anaconda Prompt as suggested by
-	Prof. Buzard to allow for the installation of geopandas without uninstalling anything from Anaconda
+Created python environment using “conda create –n labs python=3.6 spyder pyshp scipy cython geopandas” in Anaconda Prompt as suggested
+	by Prof. Buzard to allow for the installation of geopandas without uninstalling anything from Anaconda
 		Activated environment by entering “conda activate labs” when prompted
 		Installation Successful, yet still receive error using geopandas (ModuleNotFoundError: No module named ‘geopandas’)
-
-
+May have found Blocks data set in “G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\kfunctions\Three Stage K-functions\SHAPEFILES”; named 
+	BLOCK_TRIAL.shp
+File will not open with ArcMap, am troubleshooting solutions to view data set
+Was able to import geopandas module after closing spyder and opening up K-function Local_3Stage.py using the “Spyder (labs)” program
+Entered “G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\kfunctions\Three Stage K-functions\SHAPEFILES\BLOCK_TRIAL.shp” on line 35 to set
+	the directory for “blocks” to allow for testing of K-function Local_3Stage.py
+Ran program with K-function Local_3Stage.py as is at the moment, it ran smoothly until simulations began at line 103 at which the
+	program got stopped in a never ending loop and continued running never ending simulations, until manually stopped after
+	1,105,215 simulations. Each simulation printed: “SIMULATION 1105215 Threw an error.” (each with its respective simulation 
+	number)
