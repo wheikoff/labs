@@ -113,8 +113,25 @@ Began searching in the Materials for Block Level Analysis folder (G:\MAX-Filer\C
 	kbuzard-S18\Admin\Materials for Block Level Analysis); not successful
 Continuing search in the Base Data Folder (G:\MAX-Filer\Collab\Labs-kbuzard-
 	S18\Admin\CARR\California\Base Data)
-
-
-		
+	
+7/9/2018
+Troubleshooting to try and reinstall Anaconda to make python work on the Virtual Machine in Silent Mode, which allows for downloading
+	without the necessity of outside Admin. Allowance, but was unsuccessful
+Continuing search for the block level data for the 3-stage program within the California folder located within the Tony Smith 2014 folder
+	(G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\Tony Smith 2014\California)
+Had ITC reinstall Anaconda on Virtual Machine, allowing for use of Spyder
+Changed sys.path.append on line 23 to “G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\kfunctions\Three Stage K-functions” to adjust for the
+	directory where the new k-functions were moved to by Prof. Buzard
+Reinstalled Shapely using Anaconda Prompt due to the uninstall and reinstallation of Anaconda by ITC admin
+	Installation successful; module installed in Anaconda3 Folder (C:\Apps-SU\Anaconda3
+Replaced “POINT_X” and “POINT_Y” with “X” and “Y” respectively, on lines 76 and 77 to adjust for Coordinate variables with in 
+	GoodLabs.shp data set
+Replaced “POINT_X” and “POINT_Y” with “X” and “Y” respectively, on line 80 to adjust for Coordinate variables with in GoodLabs.shp 
+	data set
+Changed points data on line 37 to “G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data\GoodLabs.shp"
+Created python environment using “conda create –n labs python=3.6 spyder pyshp scipy cython geopandas” in Anaconda Prompt as suggested by
+	Prof. Buzard to allow for the installation of geopandas without uninstalling anything from Anaconda
+		Activated environment by entering “conda activate labs” when prompted
+		Installation Successful, yet still receive error using geopandas (ModuleNotFoundError: No module named ‘geopandas’)
 
 
