@@ -87,6 +87,7 @@ Changed the reference variable on line 43 to “Emp_Manufa"
 Changed ZIPFIELD variable on line 46 to “ZIP"
 Changed number of simulations to 9 on line 59
 
+
 7/3/18
 Installed shapely module using the Anaconda Prompt window in Windows. Used “conda install –c conda-forge shapely” command function
 	Installed to C:\Apps-SU\Anaconda3
@@ -133,5 +134,29 @@ Created python environment using “conda create –n labs python=3.6 spyder pys
 	Prof. Buzard to allow for the installation of geopandas without uninstalling anything from Anaconda
 		Activated environment by entering “conda activate labs” when prompted
 		Installation Successful, yet still receive error using geopandas (ModuleNotFoundError: No module named ‘geopandas’)
+May have found Blocks data set in “G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\kfunctions\Three Stage K-functions\SHAPEFILES”; named 
+	BLOCK_TRIAL.shp
+	File will not open with ArcMap, am troubleshooting solutions to view data set
+Was able to import geopandas module after closing spyder and opening up K-function Local_3Stage.py using the “Spyder (labs)” program
+Entered “G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\kfunctions\Three Stage K-functions\SHAPEFILES\BLOCK_TRIAL.shp” on line 35 to set
+	the directory for “blocks” to allow for testing of K-function Local_3Stage.py
+Ran program with K-function Local_3Stage.py as is at the moment, it ran smoothly until simulations began at line 103 at which the 
+	program got stopped in a never ending loop and continued running never ending simulations, until manually stopped after 1,105,215 
+	simulations. Each simulation printed: “SIMULATION 1105215 Threw an error.” (each with its respective simulation number
 
+7/10/18
+Entered in “Emp_Manufa” and “ZIP” into the first and second features spots on line 39 for the Zip Code Data file
+Entered in “REF_ID” and “SIC” into the first and second features spots on line 40 for the Labs data file
+Ran K-function Local_3Stage.py as is and ran completely, no longer getting stopped in an endless loop, yet shows error stating that
+	“Warning: CRS does not match”; most likely due to lack of correct Census Block data file and associated features
+Began Searching for USA block data file on internet
+No 1998 data can be found, 2000 is closest year with sufficient data
 
+7/11/18
+Continuing search for USA block data file on internet
+Found 2000 census data on https://www.census.gov/geo/maps-data/data/tiger-line.html under the “Census 2000” tab, yet was unable 
+	to download the Census 2000 shapefile; hyperlink leads nowhere
+Still working on https://www.census.gov/geo/maps-data/data/tiger-line.html, located census 2000 block data within the 2007 data tab
+	Data only available from this directory on the county level, no country-wide or state-wide data available
+Continuing to search for Block data on a state or country level, if not solution may lie in piecing all county block level data 
+	together in ArcMap
