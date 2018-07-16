@@ -176,3 +176,9 @@ After researching and looking through multiple sources to resolve whether or not
 
 7/16/18
 Continuing the search for LODES Block Level data with exhibits both the Block ID number and Total Employment data for each block
+Found block level LODES data with total emp., manufacturing emp., and block ID in CSV.gz form for California in 2002 (Earliest Form) at 
+	https://lehd.ces.census.gov/data/lodes/LODES5/ca/wac/ under the name “ca_wac_S000_JT00_2002.csv.gz”
+Extracted from gz format using 7-zip File Manager and instructions from https://www.wikihow.com/Extract-a-Gz-File which created an Excel
+	version of the File
+When opened, X and Y-axes are flipped due to the restricted number of columns in Excel and large amount of blocks in California and 
+	unrestricted number of rows
