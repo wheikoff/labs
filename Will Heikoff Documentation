@@ -160,3 +160,19 @@ Still working on https://www.census.gov/geo/maps-data/data/tiger-line.html, loca
 	Data only available from this directory on the county level, no country-wide or state-wide data available
 Continuing to search for Block data on a state or country level, if not solution may lie in piecing all county block level data 
 	together in ArcMap
+	
+7/12/18
+Found State-wide Block Level data for California (and all other states), in Shapefile Format, on https://data2.nhgis.org/main
+	after setting the Geographic Levels filter to “BLOCK” and the Years filter to “2000"
+Although data doesn’t contain total employment numbers for each block, therefore data which contains each blocks ID number 
+	and corresponding total employment numbers must be located and will need to be merged with the California block level data
+
+7/13/18
+Located Zip Code Business Data with Manufacturing data for 2000 under the NAICS code starting with 31 on 
+	https://census.gov/data/datasets/2000/econ/cbp/2000-cbp.html, located under the file name “Complete Zip Code 
+	Industry Detail File"
+After researching and looking through multiple sources to resolve whether or not the Census Zip Code data is based 
+	off of USPS Zip Codes or dependent on ZCTA data, the Census Zip Code Data seems to be based of USPS Zips and not ZCTA data
+
+7/16/18
+Continuing the search for LODES Block Level data with exhibits both the Block ID number and Total Employment data for each block
