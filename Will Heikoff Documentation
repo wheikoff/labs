@@ -182,3 +182,36 @@ Extracted from gz format using 7-zip File Manager and instructions from https://
 	version of the File
 When opened, X and Y-axes are flipped due to the restricted number of columns in Excel and large amount of blocks in California and 
 	unrestricted number of rows
+
+7/17/18
+Formatted Column A (w_geocode) to show 0 decimal places, and therefore showing the whole Block ID
+Hid Columns C through L to show Total Employment (Column B) next to Manufacturing Employment (Column M)
+Hid Columns N through AO as they are irrelevant to the current project
+Hid Column M; Manufacturing Employment is unnecessary for current project
+Created new excel file named “California WAC.xslx” containing only Column A (w_geocode) and Column B (Total Employment)
+Saved file as a CSV file for expected easier use in ArcMap when joining data to “CA_block_2000.shp” in order to have entire state of 
+	California’s Block data joined/merged with the total employment for all available blocks
+The block IDs in CA_Block_2000.shp contains 15 characters, an additional 0 at the beginning to show CAs State Code as 06, one more 
+	than in California WAC.csv Blocks ID of which showcases CAs State Code as 6
+	This forces the need of an additional field in the California WAC.csv which has its Block IDs, with corresponding Total 
+		Employment, with a 0 at the beginning so that it matches up with CA_Block_2000.shp Block IDs
+ArcMap is unable to add a new field to the data attribute table when associated with a CSV file
+Exported the California WAC.xslx as a dbf file using Microsoft Access, in order to add an additional data field in ArcMap, by opening
+	California WAC.xslx in Access and right-clicking on the California WAC table and selecting Export and then selecting dBASE File.
+	Saved file to the Desktop as a dBASE IV file as CALIFORN.dbf
+Imported CALIFORN.dbf data layer along with CA_Block_2000.shp data layer into ArcMap
+Opened CALIFORN.dbf data attribute table, selected “Add Field…” option from the “Table Options” drop-down menu. Named field “Block_ID” 
+	and changed type to “Text” with Length set to 15. Right-clicked on newly created field and selected “Field Calculator…” from the
+	drop-down menu, changed Type to “String”, and entered “0&[W_GEOCODE]” and hit OK. This created the new “Block_ID” field with 
+	California.xslx’s Block IDs with a 0 in front of each one, therefore matching up with CA_Block_2000.shp’s Block IDs
+To join the two data table together: Open attribute table for CA_Block_2000, select “Join and Relates” and “Join…” from the drop-down
+	menu. Choose “STFID” (the Block ID variable in CA_Block_2000) in box 1, choose “Block_ID” in Box 3, select “Keep only matching
+	recording” therefore only keeping the 151,188 Blocks of which are available in the California WAC file. Hit OK
+Saved Merge data Set as CA_Block_2000_with_Total_EMP.shp in the Base Data Folder: 
+	G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data\CA_Block_2000_with_Total_EMP.shp
+Working with the K-function Local_3Stage.py python program – entered in
+	“G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data\CA_Block_2000_with_Total_EMP.shp” for block data on line
+	35. Entered in “C000” and “Block_ID” in first in second spot on line 38 to set the block features. C000 for total employment 
+	variable and Block_ID for the Block ID variable
+Entered in C000 in line 49 to set the reference measure variable
+Ran Program, made it to 90% complete after 80 simulations, manually cancelled the program after 378 simulations
