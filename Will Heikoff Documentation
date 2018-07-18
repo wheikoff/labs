@@ -215,3 +215,16 @@ Working with the K-function Local_3Stage.py python program – entered in
 	variable and Block_ID for the Block ID variable
 Entered in C000 in line 49 to set the reference measure variable
 Ran Program, made it to 90% complete after 80 simulations, manually cancelled the program after 378 simulations
+
+7/18/18
+Ran Program, will run till completion
+Working with Zip Code Business Data file, “zbp00detail.txt” to transform into a Shapefile to be used in K-function Local_3Stage.py as 
+	the new Zip Code Data File
+Imported zbp00detail.txt into Excel using the “From Text” Button within the “Get External Data” drop-down menu, checked the my data 
+	has headers box in the Text Import Wizard, changed delimiter to Comma, Clicked Finish
+Excel erased the 0s at the beginning of the Zip Codes in Column 1. Formatted all cells in Column A to “Zip Code” format in the 
+	“Special” numbers category, which put back in all 0s
+Not all data was able to fit on one worksheet due to the newly found amount-of-rows limitation at 1,048,576 rows, troubleshooting
+	to get the rest of the data
+Researching to figure out why only 151,188 blocks are available in the data set, about ¼ - 1/5 of blocks available in the CA_Block_2000 
+	data
