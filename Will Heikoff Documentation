@@ -191,8 +191,8 @@ Hid Column M; Manufacturing Employment is unnecessary for current project
 Created new excel file named “California WAC.xslx” containing only Column A (w_geocode) and Column B (Total Employment)
 Saved file as a CSV file for expected easier use in ArcMap when joining data to “CA_block_2000.shp” in order to have entire state of 
 	California’s Block data joined/merged with the total employment for all available blocks
-The block IDs in CA_Block_2000.shp contains 15 characters, an additional 0 at the beginning to show CAs State Code as 06, one more 
-	than in California WAC.csv Blocks ID of which showcases CAs State Code as 6
+The block IDs in CA_Block_2000.shp contains 15 characters, an additional 0 at the beginning to show CAs State Code as 06 and is in a
+	"double" format, one more than in California WAC.csv Blocks ID of which showcases CAs State Code as 6 which is in a "Single" format
 	This forces the need of an additional field in the California WAC.csv which has its Block IDs, with corresponding Total 
 		Employment, with a 0 at the beginning so that it matches up with CA_Block_2000.shp Block IDs
 ArcMap is unable to add a new field to the data attribute table when associated with a CSV file
