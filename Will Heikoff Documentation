@@ -192,7 +192,10 @@ Created new excel file named “California WAC.xslx” containing only Column A 
 Saved file as a CSV file for expected easier use in ArcMap when joining data to “CA_block_2000.shp” in order to have entire state of 
 	California’s Block data joined/merged with the total employment for all available blocks
 The block IDs in CA_Block_2000.shp contains 15 characters, an additional 0 at the beginning to show CAs State Code as 06 and is in a
-	"double" format, one more than in California WAC.csv Blocks ID of which showcases CAs State Code as 6 which is in a "Single" format
+	"double" format, one more than in California WAC.csv Blocks ID of which showcases CAs State Code as 6 which is in a "Text" format
+	whos length is less than the neccesary 15 characters to fit the Blocks FIPS ID
+	The double format is a numeric format making it difficult to transform by removing the 0, unlike the text format which is much
+	easier to transform and add an additional 0 at the beginning of the FIPS ID
 	This forces the need of an additional field in the California WAC.csv which has its Block IDs, with corresponding Total 
 		Employment, with a 0 at the beginning so that it matches up with CA_Block_2000.shp Block IDs
 ArcMap is unable to add a new field to the data attribute table when associated with a CSV file
@@ -227,4 +230,10 @@ Excel erased the 0s at the beginning of the Zip Codes in Column 1. Formatted all
 Not all data was able to fit on one worksheet due to the newly found amount-of-rows limitation at 1,048,576 rows, troubleshooting
 	to get the rest of the data
 Researching to figure out why only 151,188 blocks are available in the data set, about ¼ - 1/5 of blocks available in the CA_Block_2000 
-	data
+	data, perhaps due to the possiblity of only 1/4 - 1/5 of the blocks contain manufacturing employment at the workplace (not 
+	residency employment level)
+Wrote program in R called: ZIPs_Tot_Emp.r located in G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\Complete Zip Code Industry Detail File,
+	in order to view and format zbp00detail.txt more efficiently
+	Imported the “sqldf” package into R
+Formatted data by excluding all data of which didn’t have “31----“(manufacturing employment) in its naics variable, resulting in the 
+	26586 zip codes with manufacturing data
