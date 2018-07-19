@@ -192,7 +192,7 @@ Created new excel file named “California WAC.xslx” containing only Column A 
 Saved file as a CSV file for expected easier use in ArcMap when joining data to “CA_block_2000.shp” in order to have entire state of 
 	California’s Block data joined/merged with the total employment for all available blocks
 The block IDs in CA_Block_2000.shp contains 15 characters, an additional 0 at the beginning to show CAs State Code as 06 and is in a
-	"double" format, one more than in California WAC.csv Blocks ID of which showcases CAs State Code as 6 which is in a "Text" format
+	"text" format, one more than in California WAC.csv Blocks ID of which showcases CAs State Code as 6 which is in a "double" format
 	whos length is less than the neccesary 15 characters to fit the Blocks FIPS ID
 	The double format is a numeric format making it difficult to transform by removing the 0, unlike the text format which is much
 	easier to transform and add an additional 0 at the beginning of the FIPS ID
@@ -235,5 +235,13 @@ Researching to figure out why only 151,188 blocks are available in the data set,
 Wrote program in R called: ZIPs_Tot_Emp.r located in G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\Complete Zip Code Industry Detail File,
 	in order to view and format zbp00detail.txt more efficiently
 	Imported the “sqldf” package into R
-Formatted data by excluding all data of which didn’t have “31----“(manufacturing employment) in its naics variable, resulting in the 
-	26586 zip codes with manufacturing data
+Formatted by excluding all data of which didn’t have “31----“( total manufacturing employment, including all naics codes starting with 
+	31, 32, and 33; as seen in https://www2.census.gov/programs-surveys/cbp/technical-documentation/reference/naics-descriptions/
+	naics.txt) in its naics variable, resulting in the 26586 zip codes with manufacturing data
+
+7/19/18
+Working with Jakes code for transforming the employment bin data in the zip code business patterns data to a total number for 
+	manufacturing employment, as the establishments do not have specific employment numbers but are instead separated into buckets 
+	such as: 1-4, 5-9, 10-19, 20-49, 50-99, 100-249, 250-499, 500-999, 1000+. The program will find the midpoints of each bucket 
+	multiply it by the amount of each bucket and adds them together to get the manufa. Employment
+	Program is written in SAS and will have to be transformed to be compatible with R
