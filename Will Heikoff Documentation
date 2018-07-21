@@ -245,3 +245,9 @@ Working with Jakes code for transforming the employment bin data in the zip code
 	such as: 1-4, 5-9, 10-19, 20-49, 50-99, 100-249, 250-499, 500-999, 1000+. The program will find the midpoints of each bucket 
 	multiply it by the amount of each bucket and adds them together to get the manufa. Employment
 	Program is written in SAS and will have to be transformed to be compatible with R
+	
+7/20/18
+Able to rewrite Jake’s code to be compatible with R and create a table which shows the adjusted buckets, zip codes, naics, 
+	number of establishments, and total manufa. Employment
+Troubleshooting method to export data from R
+
