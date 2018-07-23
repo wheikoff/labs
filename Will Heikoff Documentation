@@ -160,3 +160,170 @@ Still working on https://www.census.gov/geo/maps-data/data/tiger-line.html, loca
 	Data only available from this directory on the county level, no country-wide or state-wide data available
 Continuing to search for Block data on a state or country level, if not solution may lie in piecing all county block level data 
 	together in ArcMap
+	
+7/12/18
+Found State-wide Block Level data for California (and all other states), in Shapefile Format, on https://data2.nhgis.org/main
+	after setting the Geographic Levels filter to “BLOCK” and the Years filter to “2000"
+Although data doesn’t contain total employment numbers for each block, therefore data which contains each blocks ID number 
+	and corresponding total employment numbers must be located and will need to be merged with the California block level data
+
+7/13/18
+Located Zip Code Business Data with Manufacturing data for 2000 under the NAICS code starting with 31 on 
+	https://census.gov/data/datasets/2000/econ/cbp/2000-cbp.html, located under the file name “Complete Zip Code 
+	Industry Detail File"
+After researching and looking through multiple sources to resolve whether or not the Census Zip Code data is based 
+	off of USPS Zip Codes or dependent on ZCTA data, the Census Zip Code Data seems to be based of USPS Zips and not ZCTA data
+
+7/16/18
+Continuing the search for LODES Block Level data with exhibits both the Block ID number and Total Employment data for each block
+Found block level LODES data with total emp., manufacturing emp., and block ID in CSV.gz form for California in 2002 (Earliest Form) at 
+	https://lehd.ces.census.gov/data/lodes/LODES5/ca/wac/ under the name “ca_wac_S000_JT00_2002.csv.gz”
+Extracted from gz format using 7-zip File Manager and instructions from https://www.wikihow.com/Extract-a-Gz-File which created an Excel
+	version of the File
+When opened, X and Y-axes are flipped due to the restricted number of columns in Excel and large amount of blocks in California and 
+	unrestricted number of rows
+
+7/17/18
+Formatted Column A (w_geocode) to show 0 decimal places, and therefore showing the whole Block ID
+Hid Columns C through L to show Total Employment (Column B) next to Manufacturing Employment (Column M)
+Hid Columns N through AO as they are irrelevant to the current project
+Hid Column M; Manufacturing Employment is unnecessary for current project
+Created new excel file named “California WAC.xslx” containing only Column A (w_geocode) and Column B (Total Employment)
+Saved file as a CSV file for expected easier use in ArcMap when joining data to “CA_block_2000.shp” in order to have entire state of 
+	California’s Block data joined/merged with the total employment for all available blocks
+The block IDs in CA_Block_2000.shp contains 15 characters, an additional 0 at the beginning to show CAs State Code as 06 and is in a
+	"text" format, one more than in California WAC.csv Blocks ID of which showcases CAs State Code as 6 which is in a "double" format
+	whos length is less than the neccesary 15 characters to fit the Blocks FIPS ID
+	The double format is a numeric format making it difficult to transform by removing the 0, unlike the text format which is much
+	easier to transform and add an additional 0 at the beginning of the FIPS ID
+	This forces the need of an additional field in the California WAC.csv which has its Block IDs, with corresponding Total 
+		Employment, with a 0 at the beginning so that it matches up with CA_Block_2000.shp Block IDs
+ArcMap is unable to add a new field to the data attribute table when associated with a CSV file
+Exported the California WAC.xslx as a dbf file using Microsoft Access, in order to add an additional data field in ArcMap, by opening
+	California WAC.xslx in Access and right-clicking on the California WAC table and selecting Export and then selecting dBASE File.
+	Saved file to the Desktop as a dBASE IV file as CALIFORN.dbf
+Imported CALIFORN.dbf data layer along with CA_Block_2000.shp data layer into ArcMap
+Opened CALIFORN.dbf data attribute table, selected “Add Field…” option from the “Table Options” drop-down menu. Named field “Block_ID” 
+	and changed type to “Text” with Length set to 15. Right-clicked on newly created field and selected “Field Calculator…” from the
+	drop-down menu, changed Type to “String”, and entered “0&[W_GEOCODE]” and hit OK. This created the new “Block_ID” field with 
+	California.xslx’s Block IDs with a 0 in front of each one, therefore matching up with CA_Block_2000.shp’s Block IDs
+To join the two data table together: Open attribute table for CA_Block_2000, select “Join and Relates” and “Join…” from the drop-down
+	menu. Choose “STFID” (the Block ID variable in CA_Block_2000) in box 1, choose “Block_ID” in Box 3, select “Keep only matching
+	recording” therefore only keeping the 151,188 Blocks of which are available in the California WAC file. Hit OK
+Saved Merge data Set as CA_Block_2000_with_Total_EMP.shp in the Base Data Folder: 
+	G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data\CA_Block_2000_with_Total_EMP.shp
+Working with the K-function Local_3Stage.py python program – entered in
+	“G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data\CA_Block_2000_with_Total_EMP.shp” for block data on line
+	35. Entered in “C000” and “Block_ID” in first in second spot on line 38 to set the block features. C000 for total employment 
+	variable and Block_ID for the Block ID variable
+Entered in C000 in line 49 to set the reference measure variable
+Ran Program, made it to 90% complete after 80 simulations, manually cancelled the program after 378 simulations
+
+7/18/18
+Ran Program, will run till completion
+Working with Zip Code Business Data file, “zbp00detail.txt” to transform into a Shapefile to be used in K-function Local_3Stage.py as 
+	the new Zip Code Data File
+Imported zbp00detail.txt into Excel using the “From Text” Button within the “Get External Data” drop-down menu, checked the my data 
+	has headers box in the Text Import Wizard, changed delimiter to Comma, Clicked Finish
+Excel erased the 0s at the beginning of the Zip Codes in Column 1. Formatted all cells in Column A to “Zip Code” format in the 
+	“Special” numbers category, which put back in all 0s
+Not all data was able to fit on one worksheet due to the newly found amount-of-rows limitation at 1,048,576 rows, troubleshooting
+	to get the rest of the data
+Researching to figure out why only 151,188 blocks are available in the data set, about ¼ - 1/5 of blocks available in the CA_Block_2000 
+	data, perhaps due to the possiblity of only 1/4 - 1/5 of the blocks contain manufacturing employment at the workplace (not 
+	residency employment level)
+Wrote program in R called: ZIPs_Tot_Emp.r located in G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\Complete Zip Code Industry Detail File,
+	in order to view and format zbp00detail.txt more efficiently
+	Imported the “sqldf” package into R
+Formatted by excluding all data of which didn’t have “31----“ (total manufacturing employment, including all naics codes starting with 
+	31, 32, and 33); as seen in https://www2.census.gov/programs-surveys/cbp/technical-documentation/reference/naics-descriptions/
+	naics.txt) in its naics variable, resulting in the 26586 zip codes with manufacturing data. Confirmed that the "31----" naics
+	code covers all 31, 32, and 33 manufacturing naics, by examining zbp00detail.txt file and making sure that for each zip code
+	the number of 31, 32, and 33 establishments equals the amount of establishments listed in the "31----" naics code for that 
+	specific zip code
+
+7/19/18
+Working with Jakes code for transforming the employment bin data in the zip code business patterns data to a total number for 
+	manufacturing employment, as the establishments do not have specific employment numbers but are instead separated into buckets 
+	such as: 1-4, 5-9, 10-19, 20-49, 50-99, 100-249, 250-499, 500-999, 1000+. The program will find the midpoints of each bucket 
+	multiply it by the amount of each bucket and adds them together to get the manufa. Employment
+	Program is written in SAS and will have to be transformed to be compatible with R
+	
+7/20/18
+Able to rewrite Jake’s code to be compatible with R and create a table which shows the adjusted buckets, zip codes, naics, 
+	number of establishments, and total manufa. Employment, saved file as ZIPs_Tot_Emp.R in
+	G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\Complete Zip Code Industry Detail File folder
+Troubleshooting method to export data from R
+
+ZIPs_Tot_Emp.R file:
+
+# The purpose of this program is to import Zip Code Manufacturing data from a txt file, 
+  # average each bucket of employment size (such as 1-4, 5-9,...). The Program will then sum
+  # the employment amounts from each Zip Code, and create a new table which exhibits each Zip 
+  # Code, naics, number of establishments, the averaged buckets, total employment for each 
+  # Zip Code, and will then export the table as a dbf file
+
+# Written by Will Heikoff, 7/20/2018, for use in k-function_3Stage.py as Zip Data
+  # Based off Jake Carr's Program with the same purpose yet written in SAS
+
+
+# Set Working Directory, Import txt File Data, Import (sqldf) library in order to read file
+  # Read and import only the Zip Codes containing '31----', the manufacturing employment and
+  # create a new table
+
+
+setwd("G:/MAX-Filer/Collab/Labs-kbuzard-S18Admin/Complete Zip Code Industry Detail File")
+ZIPS = read.csv("zbp00detail.txt",header = TRUE, sep = ",")
+library(sqldf)
+Manufa_EMP = read.csv.sql("zbp00detail.txt", sql = "select * from ZIPS where naics == 
+                          '31----'", header = TRUE)
+
+#######################################################################################################
+#######################################################################################################
+
+# Multiply each bucket (column) by midpoints and create new columns with new numbers
+
+m1_4 = (round(1.7*Manufa_EMP["n1_4"]))
+m5_9 = (round(6.6*Manufa_EMP["n5_9"]))
+m10_19 = (round(13.5*Manufa_EMP["n10_19"]))
+m20_49 = (round(30.2*Manufa_EMP["n20_49"]))
+m50_99 = (round(68.8*Manufa_EMP["n50_99"]))
+m100_249 = (round(150.1*Manufa_EMP["n100_249"]))
+m250_499 = (round(340.7*Manufa_EMP["n250_499"]))
+m500_999 = (round(681.3*Manufa_EMP["n500_999"]))
+m1000 = round((((1208.8*3170+1892.9*2188+3374.7*1138+9592*411)/(3170+2188+1138+411))
+               *Manufa_EMP["n1000"]))
+
+#######################################################################################################
+#######################################################################################################
+
+# Create new data table with only new columns with new numbers
+
+EMP = data.frame(m1_4, m5_9, m10_19, m20_49, m50_99, m100_249, m250_499, m500_999, m1000)
+
+# Add Zip Codes, naics, number of establishments columns from original Data Table, and add a 
+  # Totals column to exhibit total manufacturing employment for each Zip Code
+
+EMP = cbind(EMP, Manufa_EMP["zip"], Manufa_EMP["naics"], Manufa_EMP["est"], Total_EMP = 
+              rowSums(EMP))
+
+#######################################################################################################
+#######################################################################################################
+
+# Export EMP table as "ZIP_Codes.dbf" file to Complete Zip Code Industry 
+  # Detail File (where ZIPs_Tot_Emp.R program is located)
+
+library(foreign)
+write.dbf(EMP, "ZIP_Codes", factor2char = TRUE)
+
+
+7/23/18
+Exported newly created data table as a dbf file named “ZIP_Codes.dbf” located in the 
+	G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\Complete Zip Code Industry Detail File folder
+Opened “ZIP_Codes.dbf” in ArcMap, realized that a few zip codes were being processed as 4 digit numbers where they should be processed 
+	as 5 digit numbers with a 0 at the front. This forces the need for adjustment of “zip” column
+Created a new field titled “Zip_Code” as a short integer field (default setting), using the field calculator option I made “Zip_Code” 
+	field =[zip], which is the original zip code column. After going into the field’s properties I created a custom format “00000”, 
+	which forces the column to have 5 characters and fills any spots with 0s, using the Custom function
+
+
