@@ -316,4 +316,8 @@ Replaced Points Data file on line 38 with “G:\MAX-Filer\Collab\Labs-kbuzard-S1
 	in K-function Local_3Stage.py
 All 3 data sets in K-function Local_3Stage now have the same CRS
 First successful run of K-function Local_3Stage.py program for California
+The assumption that the Zip Code Business Pattern Data is based off of USPS Zip codes and not ZCTA is confirmed by the statement 
+	on the census.gov website (where the data was taken from) which states that “ZIP Codes: ZIP codes are defined at the 
+	discretion of the U.S. Postal Service and may change from time to time”. This information can be found at the census business
+	patterns documentation website at https://www.census.gov/programs-surveys/cbp/technical-documentation/methodology.html
 
