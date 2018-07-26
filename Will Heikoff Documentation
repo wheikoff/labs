@@ -286,5 +286,38 @@ Entered “Zip_Join” on line 47 to set the ID Field
 
 Troubleshooting ways to change the coordinate system
 Found method using arcpy.SpatialReference, yet spyder cannot find SpatialReference attribute
+Located only CA zip codes with Manufacturing Employment by joining the ZIPS.shp data and the ZIP_Codes.dbf data in ArcMap
+	Unable to create join using the ZIP column in ZIPS.shp data
+Created join in the ZIPS data by creating a new field titled: Zip_Join, used the field calculator to copy the ZIP column data into 
+	Zip_Join; left all setting as defaults. Then created join using the Zip_Join column and the zip column from the ZIP_Codes.dbf 
+	data, and selecting the “Keep only matching records” option
+Exported data as a shapefile named: CAL_ZIP_EMP.shp saved in the G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\Complete Zip Code Industry
+	Detail File folder
+Entered in “G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\Complete Zip Code Industry Detail File\CAL_ZIP_EMP.shp” for new Zips data on 
+	line 37 in K-function Local_3Stage.py
+Entered in “Total_EMP” and “Zip_Join” in the first and second slot in the zfeatures function on line 40
+Entered “Total_EMP” on line 44 to set the reference measure
+Entered “Zip_Join” on line 47 to set the ID Field
 
+7/25/18
+Changed Coordinate reference system of CAL_ZIP_EMP.shp to the USA_Contiguous_Albers_Equal_Area_Conic Coordinate system and saved file
+	as CAL_ZIP_EMP_2.shp in the G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\Complete Zip Code Industry Detail File folder
+Changed CRS by opening ArcToolbox in ArcMap, selecting Data Management Tools, then Projections and Transformations then Project.  The 
+	Project dialog box will appear. 
+Under Input Data Set or Feature Class, chose the CAL_ZIP_EMP.shp
+Under Output Data Set or Feature Class, changed the save location to the G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\Complete Zip Code 
+	Industry Detail File folder, renamed the new Map Layer as CAL_ZIP_EMP_2.shp
+Under Output Coordinate System, chose the USA_Contiguous_Albers_Equal_Area_Conic Coordinate system
+Repeated steps for GoodLabs.shp, renaming file as GoodLabs_2.shp saved in the 
+	G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data folder
+Replaced Zip Data file on line 37 with “G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\Complete Zip Code Industry Detail File
+	\CAL_ZIP_EMP_2.shp” in K-function Local_3Stage.py
+Replaced Points Data file on line 38 with “G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data\GoodLabs_2.shp” 
+	in K-function Local_3Stage.py
+All 3 data sets in K-function Local_3Stage now have the same CRS
+First successful run of K-function Local_3Stage.py program for California
+The assumption that the Zip Code Business Pattern Data is based off of USPS Zip codes and not ZCTA is confirmed by the statement 
+	on the census.gov website (where the data was taken from) which states that “ZIP Codes: ZIP codes are defined at the 
+	discretion of the U.S. Postal Service and may change from time to time”. This information can be found at the census business
+	patterns documentation website at https://www.census.gov/programs-surveys/cbp/technical-documentation/methodology.html
 
