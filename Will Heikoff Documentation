@@ -320,4 +320,22 @@ The assumption that the Zip Code Business Pattern Data is based off of USPS Zip 
 	on the census.gov website (where the data was taken from) which states that “ZIP Codes: ZIP codes are defined at the 
 	discretion of the U.S. Postal Service and may change from time to time”. This information can be found at the census business
 	patterns documentation website at https://www.census.gov/programs-surveys/cbp/technical-documentation/methodology.html
+	
+7/31/18
+Created easier method of join CA_Block_2000.shp with the Block data that includes total employment without having to use access.
+	Did this by creating CA_WAC.csv file in excel (same as above on 7/17/18), then wrote script in R titled CA_WAC_Transformation.R,
+	of which imports the csv file as a table titled “Block”, takes away the scientific notation, and then exports the table a dbf 
+	file titled “CAL_Blocks” saved in the “G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data” file for use in 
+	ArcMap
+Imported CAL_Blocks.dbf data layer along with CA_Block_2000.shp data layer into ArcMap
+Opened CAL_Blocks.dbf data attribute table, selected “Add Field…” option from the “Table Options” drop-down menu. Named field “Block_ID”
+	and changed type to “Text” with Length set to 15. Right-clicked on newly created field and selected “Field Calculator…” from
+	the drop-down menu, changed Type to “String”, and entered “0&[W_GEOCODE]” and hit OK. This created the new “Block_ID” field with
+	California.xslx’s Block IDs with a 0 in front of each one, therefore matching up with CA_Block_2000.shp’s Block IDs.
+To join the two data table together: Open attribute table for CA_Block_2000, select “Join and Relates” and “Join…” from the drop-down 
+	menu. Choose “STFID” (the Block ID variable in CA_Block_2000) in box 1, choose “Block_ID” in Box 3, select “Keep only matching
+	recording” therefore only keeping the 151,188 Blocks of which are available in the California WAC file. Hit OK
+Saved Merge data Set as CA_Block_2000_with_Total_EMP.shp in the Base Data Folder:
+	G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data\CA_Block_2000_with_Total_EMP.shp
+
 
