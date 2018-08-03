@@ -321,3 +321,49 @@ The assumption that the Zip Code Business Pattern Data is based off of USPS Zip 
 	discretion of the U.S. Postal Service and may change from time to time”. This information can be found at the census business
 	patterns documentation website at https://www.census.gov/programs-surveys/cbp/technical-documentation/methodology.html
 
+7/31/18
+Created easier method of join CA_Block_2000.shp with the Block data that includes total employment without having to use access.
+	Did this by creating CA_WAC.csv file in excel (same as above on 7/17/18), then wrote script in R titled CA_WAC_Transformation.R,
+	of which imports the csv file as a table titled “Block”, takes away the scientific notation, and then exports the table a dbf 
+	file titled “CAL_Blocks” saved in the “G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data” file for use in 
+	ArcMap
+Imported CAL_Blocks.dbf data layer along with CA_Block_2000.shp data layer into ArcMap
+Opened CAL_Blocks.dbf data attribute table, selected “Add Field…” option from the “Table Options” drop-down menu. Named field “Block_ID”
+	and changed type to “Text” with Length set to 15. Right-clicked on newly created field and selected “Field Calculator…” from the
+	drop-down menu, changed Type to “String”, and entered “0&[W_GEOCODE]” and hit OK. This created the new “Block_ID” field with
+	California.xslx’s Block IDs with a 0 in front of each one, therefore matching up with CA_Block_2000.shp’s Block IDs.
+To join the two data table together: Open attribute table for CA_Block_2000, select “Join and Relates” and “Join…” from the drop-down
+	menu. Choose “STFID” (the Block ID variable in CA_Block_2000) in box 1, choose “Block_ID” in Box 3, select “Keep only matching
+	records” therefore only keeping the 151,188 Blocks of which are available in the California WAC file. Hit OK
+Saved Merge data Set as CA_Block_2000_with_Total_EMP.shp in the Base Data Folder: 
+	G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\CARR\California\Base Data\CA_Block_2000_with_Total_EMP.shp.
+
+8/2/18
+Changed CA_WAC_Transformation.R file to open file directly from the gz file and format table without the use of excel at all
+Realized error with K-function Local_3Stage.py in that it only creates a …_points.shp and not a …_buffers.shp. This means that it 
+	creates a shapefile with the lab points but not the clusters
+“GDAL data files not located, GDAL_DATA not set” and “PROJ data files not located, PROJ_LIB not set” errors seen in the K-function 
+	Local_3Stage.py log
+Troubleshooting to find solution; may be due to the ZIPS.shp file perhaps being a based off of ZCTAs and not USPS Zip Codes
+8/3/18
+Dowloaded California’s 2000 ZCTA Profile of Selected Economic Characteristics from 
+	https://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml?refresh=t# with the Product Type Filter: Data Profile,
+	Year: 2000, 5-Digit ZCTA: All 5-Digit ZIP Code Tabulation Areas fully within/partially within California, saved as 
+	DEC_00_SF3_DP3_with_ann.csv
+Wrote script in R to import aannd format the DEC_00_SF3_DP3_with_ann.csv file with only the ZCTA ID and manufacturing employment 
+	and export the file as ZCTA_Manufa.dbf, saved in the Complete Zip Code Industry Detail File
+Created CAL_ZCTA_EMP_2.shp file which contains a join of the ZCTA_Manufa.dbf file and the ZIPS.shp, saved in the Complete Zip Code
+	Industry Detail File, changed CRS to USA_Contiguous_Albers_Equal_Area_Conic Coordinate System
+Working with K-function Local_3Stage.py program - Entered “G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\Complete Zip Code Industry
+	Detail File\CAL_ZCTA_EMP_2.shp” into line 37 to set the zips file
+Entered “Number__Em” and “Id2” onto line 40 to set the zip features
+Entered “Number__Em” on line 44 to set the Reference Measure
+Entered “Id2” on line 47 to set the ID Field
+Running program with new Zip Code File for two simulations
+Simulations completed in 3.35 minutes
+Received same “GDAL data files not located, GDAL_DATA not set” and “PROJ data files not located, PROJ_LIB not set” errors, and 
+	…_buffers.shp file not created
+Trying to set GDAL by entering “conda create -n GDAL python=3.6 gdal -c conda-forge” into Anaconda Prompt
+	Installation successful; after running the program again, the errors still occur and still no …_buffers.shp built
+
+
