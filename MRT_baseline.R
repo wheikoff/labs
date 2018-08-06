@@ -6,46 +6,23 @@ library(dplyr)
 
 setwd("G:/MAX-Filer/Collab/Labs-kbuzard-S18/Admin")
 
-#Read the data from database matching
-matching<-fread("SASmatching.csv")
-
 #Read the data from database citations
 citations<- fread("SAScitations.csv")
 
 #Read the data from database possiblenclass
 possiblenclass <- fread("SASpossiblenclass.csv")
 
+citations=as.data.table(citations)
 
-#After I assign random values I need to sort the dataset possiblenclass
-setorder(possiblenclass, "nclass")
-
-# Next step is to create the dataset matching1 
-matching1<-matching[,.(cited, patent)]
-matching1$binvar<- 1
-
-# I call the dataset citation and sort it. 
-setorder(citations, "cited", "patent")
-
-#I create the data.table matching2
-matching2<- left_join(citations,matching1, by=c("cited","patent"))
-
-
-#Delete the rows with binvar=1
-matching2<-subset(matching2, is.na(binvar))
-
-#Sort matching2 by nclass
-matching2<-setorderv(matching2, "nclass", order=1L)
-matching2=as.data.table(matching2)
-
-#We transform possiblenclass and matching2 into a smaller subset, 
+#We transform possiblenclass and citations into a smaller subset, 
 #given that the memory requirements are too high
 #Creating small data tables
 
-setkey(matching2,"nclass")
+setkey(citations,"nclass")
 setkey(possiblenclass, "nclass")
-smallmatching2<-matching2[.(1:10)]
+smallmatching2<-citations[.(1:10)]
 #I'm deleting the variables I'll not going to use, to make the data sets smaller.
-smallmatching2[,  c("binvar","x_citat")  := NULL] 
+smallmatching2[,  c("x_citat")  := NULL] 
 smallpossiblenclass<-possiblenclass[.(1:10)]
 smallpossiblenclass<-smallpossiblenclass[,c(1:20)]
 
