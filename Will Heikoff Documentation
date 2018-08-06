@@ -353,7 +353,8 @@ Dowloaded California’s 2000 ZCTA Profile of Selected Economic Characteristics 
 Wrote script in R to import aannd format the DEC_00_SF3_DP3_with_ann.csv file with only the ZCTA ID and manufacturing employment 
 	and export the file as ZCTA_Manufa.dbf, saved in the Complete Zip Code Industry Detail File
 Created CAL_ZCTA_EMP_2.shp file which contains a join of the ZCTA_Manufa.dbf file and the ZIPS.shp, saved in the Complete Zip Code
-	Industry Detail File, changed CRS to USA_Contiguous_Albers_Equal_Area_Conic Coordinate System
+	Industry Detail File, changed CRS to USA_Contiguous_Albers_Equal_Area_Conic Coordinate System, using the same method used on
+	7/25/18
 Working with K-function Local_3Stage.py program - Entered “G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\Complete Zip Code Industry
 	Detail File\CAL_ZCTA_EMP_2.shp” into line 37 to set the zips file
 Entered “Number__Em” and “Id2” onto line 40 to set the zip features
