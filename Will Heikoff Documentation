@@ -321,3 +321,14 @@ The assumption that the Zip Code Business Pattern Data is based off of USPS Zip 
 	discretion of the U.S. Postal Service and may change from time to time”. This information can be found at the census business
 	patterns documentation website at https://www.census.gov/programs-surveys/cbp/technical-documentation/methodology.html
 
+
+8/6/18
+Adjusted CA_WAC_Transformation.R file to format the Block ID to add the necessary 0 at the beginning of the ID directly in R rather 
+	than having to do it in ArcMap
+Updated ZIPs_Tot_Emp.R file to extract only California Zip Codes from the file
+2000 ZCTA Manufa. Data has 198 Zips with no Manufa. Employment, 2000 ZBP Manufa. Data has 0 Zips with no Manufa. Employment, 1998
+	ZBP Manufa. Data has 0 Zips with no Manufa. Employment
+Earliest ZCTA Shapefiles available are 2007
+Downloaded 2000 ZCTA Cartographic Boundary Files for California ftp://ftp2.census.gov/geo/tiger/PREVGENZ/zt/z500shp/, titled 
+	zt06_d00.shp, saved in G:\MAX-Filer\Collab\Labs-kbuzard-S18\Admin\Complete Zip Code Industry Detail File
+
