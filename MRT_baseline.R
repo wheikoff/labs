@@ -30,7 +30,7 @@ smallpossiblenclass<-smallpossiblenclass[,c(1:50)]
 smallcitations=as.data.frame(smallcitations)#To use the same objects as Frank's code. 
 smallpossiblenclass=as.data.frame(smallpossiblenclass)
 
-#Delete the NAs created in smallmatching2 and smallpossiblenclass by the particioning of the datasets
+#Delete the NAs created in smallmatching2 and smallpossiblenclass by the partitioning of the datasets
 smallcitations<-smallcitations[-which(is.na(smallcitations$cited)),]
 smallpossiblenclass<-smallpossiblenclass[-which(is.na(smallpossiblenclass$control)),]
 
@@ -78,7 +78,21 @@ system.time(
 # with replacement matching strategy, since we may re-use the same patent
 # in big as a match for different patents in small. I think this is actually
 # the right way to do things: it's also much easier to code!)
-random_matches <- sapply(list_of_matches, function(x) sample(x, 1))
+
+#either of the following two ways will work to deal with the lists of length zero; we will want
+#to test to see which is faster
+list_of_matches[sapply(list_of_matches, function(x) length(x)==0)] <- NA
+  random_matches <- sapply(list_of_matches, function(x) sample(x,1))
+
+random_matches <- sapply(list_of_matches, function(x) ifelse(length(x)==0,1,sample(x,1)))
+
+#what we will want to do is to create a new row 1 in smallpossiblenclass; then after
+#merged patents is created, we will have a logic step to drop all the entries that
+#have the patent number from that row (we will set it to be 1, or some other inadmissible)
+#number
+
+#BUT FIRST, there is a problem. When the cbinding happens, row 679 from random_matches
+#is being bound to row 791 in smallcitations. Please trouble-shoot this.
 
 # Now you can cbind the matches if you like:
 merged_patents <- cbind(smallcitations, smallpossiblenclass[random_matches,])
