@@ -1,0 +1,57 @@
+Wednesday 13/06/2018
+
+I begin running the SAS programs.
+
+NE Control_1 
+I made a copy of the original and I'm working on the file called NE Control_1 JV
+
+I change the name of the directory in the first line to:
+G:\MAX-Filer\Research\Labs-kbuzard-S18 
+then I run the entire program one step at a time.
+Started runing at 10.40 am ended at 10.53 am. If I run the entire program it takes less than 3 minutes. 
+I added the Procedure Print the variable citations at the end of the program to see the result.
+Correctly print a table. 
+
+After running the whole program step by step, I start checking it by printing some of the variables, 
+the program print the tables but it take beetwen 10-15 min per table, if it takes longer than that I cancel the printing. 
+
+The next step should be to transpone the columns so the table looks like the one in the paper we are using.
+I assume this is done in the later programs. 
+
+The program has some value that are not referenced in the code. 
+
+Line 124, col 34. I got this message "WARNING: The variable appyear in the DROP, KEEP, or RENAME list has never been reference"
+Line 179, col 25. I got this message "WARNING: The variable o_gday in the DROP, KEEP, or RENAME list has never been referenced".
+Line 179, col 25. I got this message "WARNING: The variable o_gmonth in the DROP, KEEP, or RENAME list has never been referenced".
+
+Line 190-192 got this message "Input data set is already sorted, no sorting done". 
+I don't think it matter much, it just unneccesary. 
+
+Line 195, col 52.  I got this message "Variable o_gday is uninitialized"
+Line 195, col 59.  I got this message "Variable o_gmonth is uninitialized"
+
+Line 213-215 got this message "Input data set is already sorted, no sorting done". 
+
+Once the program finish running
+I ADDED the last proccess to the code to print the final table "citations". Line 220.
+In this table all the variables mantioned in the warnings have inputs (they are not empty).
+
+
+
+I begin looking at the second program. NE Control_2_WR_MonthDay_intl_182 
+Same as before 
+I made a copy of the original and I'm working on the file called NE Control_2_WR_MonthDay_intl_182 JV
+
+I change the name of the directory in the firts line to:
+G:\MAX-Filer\Research\Labs-kbuzard-S18 
+
+I run the program one step a time until I reach the 4# matching, after that I run the remaining 16# all together.
+The program runs good but there are some warnings in the code.
+
+It takes 8 minutes to run the full code. 
+I try printing the last table (I added this proccess) but after 20 mins waiting I cancel the proccess.
+
+
+
+
+

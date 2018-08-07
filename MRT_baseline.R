@@ -20,6 +20,7 @@ citations=as.data.table(citations)
 
 setkey(citations,"nclass")
 setkey(possiblenclass, "nclass")
+
 smallcitations<-citations[.(1:30)]
 #I'm deleting the variables I'll not going to use, to make the data sets smaller.
 smallpossiblenclass<-possiblenclass[.(1:30)]
@@ -32,6 +33,7 @@ smallpossiblenclass=as.data.frame(smallpossiblenclass)
 #Delete the NAs created in smallmatching2 and smallpossiblenclass by the particioning of the datasets
 smallcitations<-smallcitations[-which(is.na(smallcitations$cited)),]
 smallpossiblenclass<-smallpossiblenclass[-which(is.na(smallpossiblenclass$control)),]
+
 
 # Create matrix of citations in big for use below
 big_citations <- as.matrix(smallpossiblenclass[, -c(1:9)])
@@ -47,7 +49,7 @@ get_matching_rows <- function(mypatent) {
   # Vector of row indices for big that satisfy:
   # (1) same class as mypatent
   # (2) within one year of mypatent
-  comparable_rows <- which((smallpossiblenclass$nclass == mypatent$nclass) &
+comparable_rows <- which((smallpossiblenclass$nclass == mypatent$nclass) &
                              (abs(mypatent$sasdate - smallpossiblenclass$c_sasdate) < 183) &
                              (abs(smallpossiblenclass$c_invnum - mypatent$invnum)>0) &
                              ((smallpossiblenclass$c_appyear - mypatent$o_gyear)>=0) &
@@ -55,8 +57,8 @@ get_matching_rows <- function(mypatent) {
                              (abs(smallpossiblenclass$c_pdpass - mypatent$pdpass)>0) &
                              (abs(smallpossiblenclass$c_invnum - mypatent$o_invnum)>0) &
                              (abs(smallpossiblenclass$control - mypatent$patent)>0) &
-                             (abs(smallpossiblenclass$control - mypatent$cited)>0))
-  
+                             (abs(smallpossiblenclass$control - mypatent$cited)>0))  
+
   
   # A match is a row index in comparable_rows that does *not* cite mypatent 
   matching_rows <- setdiff(comparable_rows, citing_rows)
@@ -80,9 +82,6 @@ random_matches <- sapply(list_of_matches, function(x) sample(x, 1))
 
 # Now you can cbind the matches if you like:
 merged_patents <- cbind(smallcitations, smallpossiblenclass[random_matches,])
-
-
-
 
 
 #-------
