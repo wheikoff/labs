@@ -12,8 +12,6 @@ citations<- fread("SAScitations.csv")
 #Read the data from database possiblenclass
 possiblenclass <- fread("SASpossiblenclass.csv")
 
-citations=as.data.table(citations)
-
 #We transform possiblenclass and citations into a smaller subset, 
 #given that the memory requirements are too high
 #Creating small data tables
@@ -76,8 +74,8 @@ system.time(
 
 #either of the following two ways will work to deal with the lists of length zero; we will want
 #to test to see which is faster
-list_of_matches[sapply(list_of_matches, function(x) length(x)==0)] <- NA
-  random_matches <- sapply(list_of_matches, function(x) sample(x,1))
+#list_of_matches[sapply(list_of_matches, function(x) length(x)==0)] <- NA
+ # random_matches <- sapply(list_of_matches, function(x) sample(x,1))
 
 random_matches <- sapply(list_of_matches, function(x) ifelse(length(x)==0,NA,sample(x,1)))
 
@@ -86,74 +84,4 @@ random_matches <- sapply(list_of_matches, function(x) ifelse(length(x)==0,NA,sam
 merged_patents <- cbind(smallcitations, smallpossiblenclass[random_matches,])
 # And delete any rows that don't have controls (also deletes rows created)
 # spuriously when cutting the data down
-controls <- subset(merged_patents, (!is.na(merged_patents[,17])))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#-------
-get_matching_rows <- function(mypatent) {
-  
-  # Indicator (TRUE/FALSE) for patents from big that cite mypatent 
-  #cites_mypatent <- unlist(lapply(big_citations, function(x) mypatent$patent %in% x))
-  cites_mypatent <- unlist(lapply(big_citations, function(x) mypatent$patent %in% x))
-  
-  # Find rows in big matching the following conditions:
-  #   (1) same class as mypatent
-  #   (2) within one year of mypatent
-  #   (3) does not cite mypatent
-  out <- which((smallpossiblenclass$nclass == mypatent$nclass)) #&
-               #(abs(smallpossiblenclass$control - mypatent$cited)>0)) #&
-               #(abs(smallpossiblenclass$c_pdpass - mypatent$o_pdpass)>0) & 
-               #(abs(smallpossiblenclass$c_invnum - mypatent$o_invnum)>0) & 
-               #(abs(smallpossiblenclass$c_invnum - mypatent$invnum)>0) & 
-               #(abs(smallpossiblenclass$c_pdpass - mypatent$pdpass)>0) & 
-               #((smallpossiblenclass$c_appyear - mypatent$o_gyear)>=0) &
-               #(abs(mypatent$sasdate-smallpossiblenclass$c_sasdate)<=182) &
-               #(abs(smallpossiblenclass$control - mypatent$patent)>0))
-               #(!cites_mypatent))
-  return(out)
-}
-
-# Example: find rows that match first patent in small
-my_matches <- get_matching_rows(smallmatching2[1,])
-#smallpossiblenclass[my_matches,]
-
-# Now find the full set of matching indices for every patent in small
-system.time(
-list_of_matches <- lapply(1:nrow(smallmatching2), 
-                          function(row) get_matching_rows(smallmatching2[row,])))
-
-# Use the list of matches to generate random matches (note that this is a 
-# with replacement matching strategy, since we may re-use the same patent
-# in big as a match for different patents in small. I think this is actually
-# the right way to do things: it's also much easier to code!)
-random_matches <- sapply(list_of_matches, function(x) sample(x, 1))
-
-# Now you can cbind the matches if you like:
-merged_patents <- cbind(smallmatching2, smallpossiblenclass[random_matches,])
-        
-merged_patentsfinal<- subset(merged_patents, control != cited & control != patent
-                             & c_pdpass != pdpass & c_pdpass !=o_pdpass 
-                             & c_appyear!= o_gyear & (c_appyear - o_gyear)>=0
-                             & c_invnum != invnum & c_invnum != o_invnum
-                             & !is.na(cite1)
-                             & cited!=cite1--cite12
-)
-
-        
-        
-      
-      
-      
+controls <- subset(merged_patents, (!is.na(merged_patents[,'control'])))
